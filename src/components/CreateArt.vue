@@ -1,5 +1,6 @@
 
 <script lang="ts">
+import 'ant-design-vue/dist/antd.dark.css'; // or 'ant-design-vue/dist/antd.less'
 import { PlusOutlined, InfoCircleOutlined, FireOutlined } from '@ant-design/icons-vue'
 import { MenuItem, message } from 'ant-design-vue'
 import PopUpsVue from './PopUps.vue'

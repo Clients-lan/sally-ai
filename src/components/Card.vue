@@ -20,6 +20,8 @@
 
 
 <script lang="ts">
+import 'ant-design-vue/dist/antd.dark.css'; // or 'ant-design-vue/dist/antd.less'
+
 import event from '../utils/props'
 import { CopyOutlined, ExpandAltOutlined } from '@ant-design/icons-vue'
 import { message } from 'ant-design-vue'

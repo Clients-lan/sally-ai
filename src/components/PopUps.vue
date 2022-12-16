@@ -1,6 +1,8 @@
 
 
 <script lang="ts">
+import 'ant-design-vue/dist/antd.dark.css'; // or 'ant-design-vue/dist/antd.less'
+
 import event from '../utils/props'
 import { TabPane, message } from 'ant-design-vue'
 
