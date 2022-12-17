@@ -98,7 +98,7 @@ export default {
 
         setTimeout(() => {
             this.starting = false
-        }, 2000);
+        }, 1000);
     }
 }
 
