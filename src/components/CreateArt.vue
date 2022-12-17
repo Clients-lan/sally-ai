@@ -119,7 +119,7 @@ export default {
 
                 <a-button type="dashed" :disabled="results == null" class="mt-5" shape="round" size="small" @click.prevent="popModal('img', results)"> Show recent <FireOutlined /></a-button>
                 <a-button type="dashed" class="ml" size="small" shape="round" @click="popModal('mod', [])">
-                    <template #icon><PlusOutlined /></template> Design prompt
+                    <template #icon><PlusOutlined /></template> Design prompts
                 </a-button>
             </div>
 
@@ -149,7 +149,7 @@ export default {
                 <div class="flex">
                     <div>
                         <a-button type="dashed" shape="round" @click="popModal('mod', [])">
-                            <template #icon><PlusOutlined /></template> Design prompt
+                            <template #icon><PlusOutlined /></template> Design prompts
                         </a-button>
                     </div>
                   <div class="grid">
