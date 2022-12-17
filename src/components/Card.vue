@@ -1,14 +1,15 @@
 <template>
     <div>
         <div class="ui-card">
-            <img :src="card.url" />
+            <!-- <img :src="card.url" /> -->
+            <a-image :preview="{ visible,  onVisibleChange: setVisible }" :src="card.url" />
                 <div class="ui-cover-meta">
                  <div class="flex mb">
                     <span class="text-red">
                         <a href="#" @click.prevent="copy(card.prompt)" class="text-red">Copy <CopyOutlined /></a>
                     </span>
                     <span>
-                        <a href="#" @click.prevent="expand(card.url)" class="text-gray"><ExpandAltOutlined /></a>
+                        <a href="#" @click.prevent="setVisible(true)" class="text-gray"><ExpandAltOutlined /></a>
                     </span>
                  </div>
                 <p>{{card.prompt}}</p>
@@ -33,6 +34,11 @@ export default{
     components:{
         CopyOutlined, ExpandAltOutlined
     },
+    data(){
+        return{
+            visible: false,
+        }
+    },
     methods:{
        expand(url: any){
         event.$emit('expand', url)
@@ -40,6 +46,9 @@ export default{
        copy(text: any){
         navigator.clipboard.writeText(text);
         message.success('Prompt copied to clipboard')
+       },
+       setVisible(val){
+        this.visible = val
        }
     }
 }

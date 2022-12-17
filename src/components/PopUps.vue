@@ -19,7 +19,6 @@ export default {
         prompt:  null, images: samples,
         placeholder, activeKey: modifiers[0].name,
         loading: false, modifiers, isResult: false,
-        expand: {sh: false, url: null},
     }
    },
    methods:{
@@ -50,10 +49,6 @@ export default {
         this.loading = false
         this.images = data.img.length > 0 ? data.img : samples
     })
-     event.$on('expand', (data: any) => {
-        if(!this.visible) return message.warn('Open then modal to expand image! Hint: Click See samples')
-        this.expand = { sh: true, url: data }
-      })
    }
 }
 </script>
@@ -65,6 +60,7 @@ export default {
     <div>
         <a-modal v-model:visible="visible" width="700px" style="top:10px;" :title="tryPrompts ? 'Discovery': 'Add modifiers'">
             <template #footer>
+                <a-button key="submit" v-if="isResult" @click="useSample(prompt)" type="primary" shape="round">RE-RUN PROMPT</a-button>
                 <a-button key="submit" @click="visible = false" type="dashed" shape="round">DONE</a-button>
             </template>
              <div class="ui-modal">
@@ -72,12 +68,7 @@ export default {
                    <a-textarea v-model:value="prompt" :placeholder="placeholder" :auto-size="{ minRows: 2, maxRows: 2 }"/>
                 </div>
 
-                <div  v-if="expand.sh" class="expanded">
-                    <img :src="expand.url">
-                     <a-button type="danger" block @click="expand.sh = false">Undo</a-button>
-                </div>
-
-                <div class="container" v-if="tryPrompts && !expand.sh">
+                <div class="container" v-if="tryPrompts">
                     <div v-for="(item, index) in images" :key="index" class="gallery">
                         <Card :card="item">
                             <a-button v-if="item.dl" type="dashed" @click="useDl(item.url)"  block>Download image</a-button>
@@ -117,11 +108,7 @@ export default {
   }
 }
 
-.expanded{
-   img{
-    width: 100%;
-   }
-}
+
 
 
 

@@ -23,7 +23,7 @@ export default {
         return {
             checked: false, modal: false, popular,
             promptVal: '', sample: samples[1],
-            placeholder, noi: 1,
+            placeholder, noi: 1, starting: true,
             loading: true, results: null,
             params: {
                 engine: 'stable-diffusion-v1-5',
@@ -95,6 +95,10 @@ export default {
             this.generate()
         })
         this.loading = false
+
+        setTimeout(() => {
+            this.starting = false
+        }, 2000);
     }
 }
 
@@ -115,11 +119,11 @@ export default {
 
                 <a-button type="dashed" :disabled="results == null" class="mt-5" shape="round" size="small" @click.prevent="popModal('img', results)"> Show recent <FireOutlined /></a-button>
                 <a-button type="dashed" class="ml" size="small" shape="round" @click="popModal('mod', [])">
-                    <template #icon><PlusOutlined /></template> Design inputs
+                    <template #icon><PlusOutlined /></template> Design prompt
                 </a-button>
             </div>
 
-             <a-skeleton :loading="loading" active avatar>
+             <a-skeleton :loading="starting" active>
                 <div class="ui-form">
                  <Card :card="sample">
                     <a-button @click="popModal('img', [])" :loading="loading" type="dashed" block>See samples</a-button>
@@ -145,7 +149,7 @@ export default {
                 <div class="flex">
                     <div>
                         <a-button type="dashed" shape="round" @click="popModal('mod', [])">
-                            <template #icon><PlusOutlined /></template> Design inputs
+                            <template #icon><PlusOutlined /></template> Design prompt
                         </a-button>
                     </div>
                   <div class="grid">
