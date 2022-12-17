@@ -108,19 +108,26 @@ export default {
 <template>
     <div>
         <div class="create-art">
-            <h1 class="ui-header">Sally creative AI</h1>
+            <h1 class="ui-header">Flow State AI</h1>
             <div class="ui-form">
                 <label>Write a prompt</label>
                 <a-textarea v-model:value="promptVal" :placeholder="placeholder" :auto-size="{ minRows: 2, maxRows: 3 }"/>
 
                 <a-button type="dashed" :disabled="results == null" class="mt-5" shape="round" size="small" @click.prevent="popModal('img', results)"> Show recent <FireOutlined /></a-button>
+                <a-button type="dashed" class="ml" size="small" shape="round" @click="popModal('mod', [])">
+                    <template #icon><PlusOutlined /></template> Design inputs
+                </a-button>
             </div>
 
-            <div class="ui-form">
+             <a-skeleton :loading="loading" active avatar>
+                <div class="ui-form">
                  <Card :card="sample">
                     <a-button @click="popModal('img', [])" :loading="loading" type="dashed" block>See samples</a-button>
                 </Card>
               </div>
+             </a-skeleton>
+
+           
 
               <div class="ui-form">
                 <label for="">Number of images</label>
@@ -138,7 +145,7 @@ export default {
                 <div class="flex">
                     <div>
                         <a-button type="dashed" shape="round" @click="popModal('mod', [])">
-                            <template #icon><PlusOutlined /></template> Add modifiers
+                            <template #icon><PlusOutlined /></template> Design inputs
                         </a-button>
                     </div>
                   <div class="grid">

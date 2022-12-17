@@ -68,7 +68,7 @@ export default {
                 <a-button key="submit" @click="visible = false" type="dashed" shape="round">DONE</a-button>
             </template>
              <div class="ui-modal">
-                <div class="ui-form" v-if="!tryPrompts">
+                <div class="ui-form mt-5" v-if="!tryPrompts">
                    <a-textarea v-model:value="prompt" :placeholder="placeholder" :auto-size="{ minRows: 2, maxRows: 2 }"/>
                 </div>
 
